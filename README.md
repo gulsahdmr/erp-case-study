@@ -26,7 +26,7 @@ Sistemde satınalma ve stok akışını yönetecek 7 temel tablo ilişkisel mode
 * **StockTransaction:** Giriş (`IN`) ve çıkış (`OUT`) hareketlerini saklayan, denetim izi sağlayan stok defteri.
 
 ### ER Diyagramı
-![ER Diyagramı](er_diyagrami.jpg)
+![ER Diyagramı](er_diyagrami.png)
 
 * SQL Tablo Scripti: [`bolum1_veri_modeli.sql`](bolum1_veri_modeli.sql)
 * dbdiagram.io Kodu: [`bolum1_dbdiagram.dbml`](bolum1_dbdiagram.dbml)
