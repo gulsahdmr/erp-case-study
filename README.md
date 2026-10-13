@@ -88,3 +88,11 @@ Yapay bir şablon yerine; **staj sürecimde caniasERP ile entegre olarak gelişt
 ![Dashboard Ekran 2](dashboard_staj_2.png)
 
 * Dashboard Detay Dokümanı: [`bonus_dashboard_tasarim.md`](bonus_dashboard_tasarim.md)
+
+---
+
+## 🛠️ Araç Kullanımı ve Teknik Notlar
+
+* **Tasarım ve Modelleme:** dbdiagram.io, SQL Server (T-SQL), Markdown.
+* **Yapay Zeka Bildirimi:** Ödev yönergesi doğrultusunda; çalışma sürecinde **Google Gemini** ve **Anthropic Claude** araçlarından yalnızca temel seviyede asistanlık amacıyla (SQL sözdizimi kontrolleri, yazım/imla denetimi ve dokümantasyon formatlama gibi rutin işlerde) faydalanılmıştır. 
+* **Tasarım Kararları:** Tablo ilişkileri, iş mantığı kuralları, destek senaryosundaki kök neden çözüm yaklaşımı ve dashboard ekranları bizzat kendi staj tecrübelerim ve teknik kararlarımla oluşturulmuştur.
