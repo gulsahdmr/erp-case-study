@@ -1,0 +1,84 @@
+// Satınalma ve Stok Yönetimi ER Modeli (dbdiagram.io)
+
+Table Item {
+  ItemID       int           [pk, increment]
+  ItemCode     varchar(50)   [unique, not null]
+  ItemName     varchar(200)  [not null]
+  Description  varchar(500)
+  Unit         varchar(20)   [not null]
+  UnitPrice    decimal       [not null, default: 0]
+  MinStockQty  decimal       [not null, default: 0]
+  IsActive     bit           [not null, default: 1]
+  CreatedAt    datetime      [not null]
+  UpdatedAt    datetime
+}
+
+Table Supplier {
+  SupplierID   int           [pk, increment]
+  SupplierCode varchar(50)   [unique, not null]
+  SupplierName varchar(200)  [not null]
+  ContactName  varchar(100)
+  Phone        varchar(20)
+  Email        varchar(100)
+  Address      varchar(500)
+  TaxNumber    varchar(20)
+  IsActive     bit           [not null, default: 1]
+  CreatedAt    datetime      [not null]
+}
+
+Table PurchaseOrder {
+  PurchaseOrderID      int           [pk, increment]
+  PONumber             varchar(50)   [unique, not null]
+  SupplierID           int           [not null, ref: > Supplier.SupplierID]
+  OrderDate            date          [not null]
+  ExpectedDeliveryDate date
+  Status               varchar(20)   [not null, default: 'Draft']
+  TotalAmount          decimal       [not null, default: 0]
+  Notes                varchar(500)
+  CreatedBy            varchar(100)
+  CreatedAt            datetime      [not null]
+  UpdatedAt            datetime
+}
+
+Table PurchaseOrderLine {
+  POLineID        int           [pk, increment]
+  PurchaseOrderID int           [not null, ref: > PurchaseOrder.PurchaseOrderID]
+  ItemID          int           [not null, ref: > Item.ItemID]
+  LineNumber      int           [not null]
+  OrderedQty      decimal       [not null]
+  ReceivedQty     decimal       [not null, default: 0]
+  UnitPrice       decimal       [not null]
+  LineTotal       decimal
+}
+
+Table GoodsReceipt {
+  GoodsReceiptID  int           [pk, increment]
+  GRNumber        varchar(50)   [unique, not null]
+  PurchaseOrderID int           [not null, ref: > PurchaseOrder.PurchaseOrderID]
+  ReceiptDate     date          [not null]
+  ReceivedBy      varchar(100)
+  Notes           varchar(500)
+  CreatedAt       datetime      [not null]
+}
+
+Table GoodsReceiptLine {
+  GRLineID       int           [pk, increment]
+  GoodsReceiptID int           [not null, ref: > GoodsReceipt.GoodsReceiptID]
+  POLineID       int           [not null, ref: > PurchaseOrderLine.POLineID]
+  ItemID         int           [not null, ref: > Item.ItemID]
+  ReceivedQty    decimal       [not null]
+  Notes          varchar(200)
+}
+
+Table StockTransaction {
+  StockTransactionID int           [pk, increment]
+  ItemID             int           [not null, ref: > Item.ItemID]
+  TransactionType    varchar(20)   [not null]
+  Quantity           decimal       [not null]
+  TransactionDate    datetime      [not null]
+  ReferenceType      varchar(50)
+  ReferenceID        int
+  Notes              varchar(200)
+  CreatedBy          varchar(100)
+  CreatedAt          datetime      [not null]
+}
